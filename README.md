@@ -1,8 +1,8 @@
 # gradle fundamentals - multi module
 
-This project is a multi-module java project.
-- core, is about also _same basic_ java concepts such as jmh, functional interfaces etc..
-- fp, is reaching core project.
+This project is single module project which covers some critical concepts
+- Test concepts (jmh, junit tests) 
+- 
 
 
 ## more on gradle
