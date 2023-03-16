@@ -1,6 +1,6 @@
-# gradle fundamentals - multi module
+# gradle-backbone
 
-This project is single module project which covers some critical concepts
+This project is single-module project which also covers some critical concepts as a backbone
 - Test concepts (jmh, junit tests) 
 - 
 
@@ -8,20 +8,23 @@ This project is single module project which covers some critical concepts
 ## more on gradle
 Project scope and java command scopes have different things! So Some key points to consider are:
 
-- `./gradlew run` vs `java -jar ...` or `java -cp ...` (where leads no main manifest attribute)
-- _multiple_ modules vs _one_ module
-- handling central gradle staffs (i.e some shared parts) vs keep everything separated `build.gradle` file of modules
+- `./gradlew run`, checks `application {mainClass=}` attribute in `build.gradle` 
+- `java -jar ..jar`, checks main manifest file in jar or `{ manifest { attributes {} }}` in `build.gradle` 
+- `java -cp ..jar core.org.MainBlaBla`, where leads no main manifest attribute. 
 
+### gradle multi-modules injections
 
-- [x] if you use java commands: fp, depends on the _core_ project jar. so add this jar, too.
-  - `java -cp core/build/libs/core-1.0-SNAPSHOT.jar:fp/build/libs/fp-1.0-SNAPSHOT.jar org.example.Main`
-    - , or put the core jar into a local repository, then let gradle get from there !
+- Think about some kind of key points 
+  - Project structure (many modules, all contains `build.gradle`, `src` folders etc..)
+  - Handling some central `build.gradle` staffs (i.e some shared parts)
+  - Unlock multi-modules marked `build.gradle` lines
+  - Define project dependencies (gradle command level and java command level)
+    - [x] if you use java commands: (i.e. _fp_, depends on the _core_ project jar).
+          so add this jar, too.
+        - `java -cp core/build/libs/core-1.0-SNAPSHOT.jar:fp/build/libs/fp-1.0-SNAPSHOT.jar org.example.Main`
+        - or put the core jar into a local repository, then let gradle get from there !
 
-- [x] if, you use gradle commands
-  - `./gradlew :core:clean  && ./gradlew :core:build`, then
-  - `./gradlew :fp:clean  && ./gradlew :fp:build`, then
-  - `./gradlew :fp:run` to run,
+    - [x] if, you use gradle commands
+      - In multi-modules, project specific commands `./gradlew :module-name:run` also possible
 
-When you use multi-modules in Gradle, there may be need some orchestration parts in the central _build.gradle_ file(s)!
-This does not come with automatically.
  
