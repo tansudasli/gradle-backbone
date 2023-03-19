@@ -5,6 +5,7 @@ plugins {
     id 'me.champeau.jmh' version '0.6.7'       //jmh benchmarking plugin
     id 'com.palantir.docker' version '0.34.0'       //docker plugin - creating image
     id 'com.palantir.docker-run' version '0.34.0'   //docker plugin - running the image
+    id 'org.graalvm.buildtools.native' version '0.9.20'  //graalvm w/ native-image
 }
 
 group 'org.core'
@@ -20,7 +21,7 @@ java.sourceCompatibility JavaVersion.VERSION_19
  */
 jar {
     manifest {
-        attributes('Implementation-Title': 'Gradle Sandbox',
+        attributes('Implementation-Title': 'Gradle Backbone',
                 'Implementation-Version': archiveVersion,
 //                   'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
                 'Main-Class': 'org.core.Main')
@@ -39,6 +40,7 @@ application {
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()    //not yet defined in gradle plugin repository
 }
 
 dependencies {
@@ -87,6 +89,31 @@ dockerRun {
     image "${project.name}:${project.version}"
 //    ports '8080:8080'
 }
+
+//graalvm native image config
+graalvmNative {
+    binaries.all {
+        resources.autodetect()
+    }
+
+    binaries {
+        main {
+            // Main options
+            imageName = "${project.name}.Main" // The name of the native image, defaults to the project name
+            mainClass = 'org.core.Main'
+        }
+
+        mainStream {
+            // Main options
+            imageName = "${project.name}.MainStream" // The name of the native image, defaults to the project name
+            mainClass = 'org.core.MainStream'
+            classpath("build/libs/${project.name}-${version}.jar")
+
+        }
+    }
+//    toolchainDetection = false
+}
+
 
 /* for custom task definition
  * register first, then define

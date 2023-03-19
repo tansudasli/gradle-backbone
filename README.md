@@ -3,6 +3,7 @@
 This project is single-module project which also covers some critical concepts as a backbone
 - Test concepts (jmh, junit5) 
 - Containerization (docker, palantir)
+- Native image (graalvm)
 
 
 ## more on gradle
