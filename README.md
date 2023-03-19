@@ -2,11 +2,17 @@
 
 This project is a single-module project which also covers some critical concepts as a backbone
 
-- jdk19
 - Test concepts (jmh, junit5) 
 - Containerization (docker, palantir)
 - Native image (graalvm) generation
 
+<details>
+<summary>Tech. stack</summary>
+
+- jdk19
+- gradle 7.6
+- 
+</details>
 
 ## more on gradle
 
@@ -16,7 +22,8 @@ Project scope and java command scopes have different things! So Some key points 
 - `java -jar ..jar`, checks main manifest file in jar or `{ manifest { attributes {} }}` in `build.gradle` 
 - `java -cp ..jar core.org.MainBlaBla`, where leads no main manifest attribute. 
 
-### gradle multi-modules injections
+<details>
+<summary>gradle multi-modules injections</summary>
 
 - Think about some kind of key points 
   - Project structure (many modules, all contains `build.gradle`, `src` folders etc..)
@@ -30,6 +37,7 @@ Project scope and java command scopes have different things! So Some key points 
 
     - [x] if, you use gradle commands
       - In multi-modules, project specific commands `./gradlew :module-name:run` also possible
+</details>
 
  ## more on graalvm & native image capability
 
