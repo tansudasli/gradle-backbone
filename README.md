@@ -1,8 +1,8 @@
 # gradle-backbone
 
 This project is single-module project which also covers some critical concepts as a backbone
-- Test concepts (jmh, junit tests) 
-- 
+- Test concepts (jmh, junit5) 
+- Containerization (docker, palantir)
 
 
 ## more on gradle

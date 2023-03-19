@@ -1,13 +1,16 @@
 plugins {
     id 'java'
-    id 'application'                       //adds the run task. also adds application{main-class} line below
-//    id 'java-library'                    //adds api command!
-    id 'me.champeau.jmh' version '0.6.7'   //jmh benchmarking plugin
+    id 'application'                           //adds the run task. also adds application{main-class} line below
+//    id 'java-library'                        //adds api command!
+    id 'me.champeau.jmh' version '0.6.7'       //jmh benchmarking plugin
+    id 'com.palantir.docker' version '0.34.0'       //docker plugin - creating image
+    id 'com.palantir.docker-run' version '0.34.0'   //docker plugin - running the image
 }
 
 group 'org.core'
 version '1.0-SNAPSHOT'
 java.sourceCompatibility JavaVersion.VERSION_19
+
 
 /* for java -jar ..`
  * add below to use 'java -jar ..' command!
@@ -59,6 +62,30 @@ dependencies {
 test {
     //for junit5
     useJUnitPlatform()
+}
+
+//palantir docker plugin - creates image
+//workingDir is under build/docker, so we need to copy some files to
+//work with existing Dockerfile !
+//./gradlew docker              or docker build -t gradle-backbone:0.0.2-SNAPSHOT .
+//./gradlew dockerTag
+//./gradlew dockerPushDockerHub or  docker push tansudasli/gradle-backbone:1.0-SNAPSHOT
+docker {
+    name "${project.name}:${project.version}"
+
+    dockerfile file('Dockerfile')
+    copySpec.from("./build/libs/").into("./build/libs/")
+
+    tag 'DockerHub', "tansudasli/${project.name}:${project.version}"
+
+}
+
+//palantir docker run plugin - runs image
+//./gradlew dockerRun
+dockerRun {
+    name "${project.name}"
+    image "${project.name}:${project.version}"
+//    ports '8080:8080'
 }
 
 /* for custom task definition
