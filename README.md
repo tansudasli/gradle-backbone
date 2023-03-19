@@ -1,12 +1,15 @@
 # gradle-backbone
 
-This project is single-module project which also covers some critical concepts as a backbone
+This project is a single-module project which also covers some critical concepts as a backbone
+
+- jdk19
 - Test concepts (jmh, junit5) 
 - Containerization (docker, palantir)
-- Native image (graalvm)
+- Native image (graalvm) generation
 
 
 ## more on gradle
+
 Project scope and java command scopes have different things! So Some key points to consider are:
 
 - `./gradlew run`, checks `application {mainClass=}` attribute in `build.gradle` 
@@ -28,4 +31,8 @@ Project scope and java command scopes have different things! So Some key points 
     - [x] if, you use gradle commands
       - In multi-modules, project specific commands `./gradlew :module-name:run` also possible
 
- 
+ ## more on graalvm & native image capability
+
+- Install sdkman`brew install sdkman-cli`
+- Install graalvm java `sdk install java 22.3.r19-grl` for jdk19
+- Install native-image `gu install native-image`
