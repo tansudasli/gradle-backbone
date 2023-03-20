@@ -73,12 +73,12 @@ Current Dockerfile config containerize the .jar file. Not the native file.
 
 </details>
 
-## more on gradle
+### more on gradle
 
-Project scope and java command scopes have different things! So Some key points to consider are:
+IDE (project) scope and java command scopes have different things! So Some key points to consider are:
 
 - `./gradlew run`, checks `application {mainClass=}` attribute in `build.gradle` 
-- `java -jar ..jar`, checks main manifest file in jar or `{ manifest { attributes {} }}` in `build.gradle` 
+- `java -jar ..jar`, checks main manifest file in jar or `{ manifest { attributes {} }}` in `build.gradle` (so must be injected!)
 - `java -cp ..jar core.org.MainBlaBla`, where leads no main manifest attribute. 
 
 <details>
@@ -98,7 +98,7 @@ Project scope and java command scopes have different things! So Some key points 
       - In multi-modules, project specific commands `./gradlew :module-name:run` also possible
 </details>
 
- ## more on graalvm
+### more on graalvm
 
 - Install sdkman `brew install sdkman-cli`
 - Install graalvm java `sdk install java 22.3.r19-grl` for jdk19
