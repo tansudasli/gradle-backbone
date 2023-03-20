@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'org.core'
-version '1.0-SNAPSHOT'
+version '2.0-SNAPSHOT'
 java.sourceCompatibility JavaVersion.VERSION_19
 
 
@@ -96,17 +96,27 @@ graalvmNative {
         resources.autodetect()
     }
 
+    //if you need other main files, add below!
+    //below adds new gradle tasks !
     binaries {
-        main {
+        Main {
             // Main options
             imageName = "${project.name}.Main" // The name of the native image, defaults to the project name
             mainClass = 'org.core.Main'
         }
 
-        mainStream {
+        MainStream {
             // Main options
             imageName = "${project.name}.MainStream" // The name of the native image, defaults to the project name
             mainClass = 'org.core.MainStream'
+            classpath("build/libs/${project.name}-${version}.jar")
+
+        }
+
+        MainParallelStream {
+            // Main options
+            imageName = "${project.name}.MainParallelStream" // The name of the native image, defaults to the project name
+            mainClass = 'org.core.MainParallelStream'
             classpath("build/libs/${project.name}-${version}.jar")
 
         }
