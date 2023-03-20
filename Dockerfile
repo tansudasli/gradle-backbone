@@ -12,7 +12,7 @@
 #ENTRYPOINT ["executable", "param1", "param2"]
 #ENTRYPOINT command param1 param2
 #
-FROM eclipse-temurin:19-alpine
+FROM eclipse-temurin:19_36-jre-alpine
 COPY ./build/libs/ /tmp
 WORKDIR /tmp
 ENTRYPOINT /bin/sh
