@@ -1,7 +1,9 @@
 # gradle-backbone
 
-This project is a single-module project which also covers some critical concepts as a backbone
+This project is a single-module project which also covers some critical concepts.
+So It can be used as a backbone to create new projects
 
+- Build (gradle)
 - Test concepts (jmh, junit5) 
 - Containerization (docker, palantir)
 - Native image (graalvm)
