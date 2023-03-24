@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'org.core'
-version '2.0-SNAPSHOT'
+version '3.0-SNAPSHOT'
 java.sourceCompatibility JavaVersion.VERSION_19
 
 
@@ -103,6 +103,7 @@ graalvmNative {
             // Main options
             imageName = "${project.name}.Main" // The name of the native image, defaults to the project name
             mainClass = 'org.core.Main'
+            classpath("build/libs/${project.name}-${version}.jar")
         }
 
         MainStream {
@@ -120,6 +121,7 @@ graalvmNative {
             classpath("build/libs/${project.name}-${version}.jar")
 
         }
+
     }
 //    toolchainDetection = false
 }

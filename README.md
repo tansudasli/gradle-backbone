@@ -68,7 +68,8 @@ Current Dockerfile config containerize the .jar file. Not the native file.
 - to run
 ```
   - ./gradlew build jar
-  - ./gradlew nativeCompile
+  - ./gradlew nativeCompile 
+    - or other executables: /gradlew nativeMain
   - ./build/native/nativeCompile/gradle-backbone.Main
 
 ```
